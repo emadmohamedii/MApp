@@ -1,0 +1,6 @@
+framework module CustomDesignableX {
+  umbrella header "CustomDesignableX-umbrella.h"
+
+  export *
+  module * { export * }
+}

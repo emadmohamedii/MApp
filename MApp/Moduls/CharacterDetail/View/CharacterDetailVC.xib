@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailVC" customModule="MApp" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="NeZ-85-M0h" id="SmI-16-NFq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blur" translatesAutoresizingMaskIntoConstraints="NO" id="MKq-5r-Jfo">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NeZ-85-M0h">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="NeZ-85-M0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0T5-6y-GQR"/>
+                <constraint firstItem="NeZ-85-M0h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2w3-5R-Hf1"/>
+                <constraint firstItem="MKq-5r-Jfo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Mhi-3r-0FN"/>
+                <constraint firstAttribute="bottom" secondItem="MKq-5r-Jfo" secondAttribute="bottom" id="STZ-rt-pjQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NeZ-85-M0h" secondAttribute="bottom" id="bz3-2z-TCF"/>
+                <constraint firstAttribute="trailing" secondItem="MKq-5r-Jfo" secondAttribute="trailing" id="rAA-PB-hqH"/>
+                <constraint firstItem="MKq-5r-Jfo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xR0-cS-TcY"/>
+                <constraint firstAttribute="trailing" secondItem="NeZ-85-M0h" secondAttribute="trailing" id="xvQ-G3-DRQ"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="blur" width="5616" height="3744"/>
+    </resources>
+</document>
