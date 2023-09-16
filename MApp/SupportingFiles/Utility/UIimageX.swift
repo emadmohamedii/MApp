@@ -7,10 +7,9 @@
 
 import Foundation
 import UIKit
-import Kingfisher
+import SDWebImage
 
 extension UIImageView {
-    
     public func downloadImageWithCaching(with url: String,placeholderImage: UIImage? = nil){
         if url == ""{
             self.image = placeholderImage
@@ -20,6 +19,9 @@ extension UIImageView {
             self.image = placeholderImage
             return
         }
-        self.kf.setImage(with: imageURL,placeholder: placeholderImage,options: [.transition(.fade(0.1))],progressBlock: nil)
-    }    
+        DispatchQueue.main.async {
+            self.sd_imageTransition = .fade
+            self.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
+        }
+    }
 }

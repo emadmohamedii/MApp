@@ -10,6 +10,7 @@ import CoreData
 import RxSwift
 import RxCocoa
 import RxCoreData
+import Alamofire
 
 class CharactersViewModel:BaseViewModel {
     
@@ -36,15 +37,15 @@ class CharactersViewModel:BaseViewModel {
         
         getAllCharsRequest()
         
+        
         self.callNextPage.asObservable().subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             // Check internet availability, call next page API if internet available
             if UtilityFunctions.isConnectedToInternet == true {
-                if self.nextPage != 0 {
-                    self.nextPage += 1
-                    self.getAllCharsRequest()
-                }
-            } else {
+                self.nextPage += 1
+                self.getAllCharsRequest()
+            }
+            else {
                 self.getCharsFromCoreData()
             }
         }).disposed(by: disposeBag)
@@ -63,7 +64,7 @@ class CharactersViewModel:BaseViewModel {
     
     func getAllCharsRequest(){
         isFromCoredata = false
-        let apiRouter = CharactersAPIRouter.characters(limit: limit, offset: self.nextPage  == 1 ? 1 : self.nextPage * limit)
+        let apiRouter = CharactersAPIRouter.characters(limit: limit, offset: self.nextPage  == 0 ? 0 : self.nextPage * limit)
         dependencies.api.regularRequest(apiRouter: apiRouter)
             .trackActivity(nextPage == 0 ? isLoading : ActivityIndicator())
             .observe(on: MainScheduler.asyncInstance)
@@ -103,16 +104,15 @@ class CharactersViewModel:BaseViewModel {
         fetchRequest.sortDescriptors = []
         fetchRequest.fetchLimit = self.limit
         fetchRequest.fetchOffset = self.nextPage
-        
-        dependencies.managedObjectContext?.rx.entities(fetchRequest: fetchRequest).asObservable()
-            .subscribe(onNext: { [weak self] charModels in
-                guard let `self` = self else {return}
+        do {
+            if let charModels =  try dependencies.managedObjectContext?.fetch(fetchRequest) {
+                plog(self.chars.value.count)
+                plog(charModels.count)
                 
                 if charModels.count == 0 {
-                    self.alertDialog.onNext((NSLocalizedString("Please try again later", comment: ""), " NO INTERNET , NO CACHED "))
+                    plog(" NO INTERNET , NO CACHED ")
                     return
                 }
-                
                 var chars = [CharactersResultModel]()
                 for char in charModels {
                     let charModel = CharactersResultModel.init(model: .init(entity: char))
@@ -125,6 +125,10 @@ class CharactersViewModel:BaseViewModel {
                 let currentData = self.chars.value + chars
                 self.chars.accept(currentData)
                 self.nextPage += self.limit
-            }).disposed(by: disposeBag)
+            }
+        }
+        catch let error {
+            self.alertDialog.onNext((NSLocalizedString("Please try again later", comment: ""), error.localizedDescription))
+        }
     }
 }

@@ -8,7 +8,7 @@ def mypods
 end
 
 def genpods
-  pod 'Kingfisher'
+  pod 'SDWebImage'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'

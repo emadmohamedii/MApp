@@ -41,7 +41,7 @@ struct CharactersResultModel : Codable {
         self.thumbnail = CharactersThumbnailModel(image: model.imageURL)
         self.resourceURI = ""
         self.modified = ""
-        self.descriptionField = ""
+        self.descriptionField = model.desc
     }
     
 }

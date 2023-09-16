@@ -2,7 +2,6 @@ PODS:
   - Alamofire (5.8.0)
   - CustomDesignableX (0.1.0)
   - Differentiator (5.0.0)
-  - Kingfisher (7.9.1)
   - MBProgressHUD (1.2.0)
   - RxAlamofire (6.1.1):
     - RxAlamofire/Core (= 6.1.1)
@@ -22,23 +21,25 @@ PODS:
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
+  - SDWebImage (5.18.1):
+    - SDWebImage/Core (= 5.18.1)
+  - SDWebImage/Core (5.18.1)
 
 DEPENDENCIES:
   - CustomDesignableX (~> 0.1)
-  - Kingfisher
   - MBProgressHUD
   - RxAlamofire
   - RxCocoa
   - RxCoreData
   - RxDataSources
   - RxSwift
+  - SDWebImage
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - CustomDesignableX
     - Differentiator
-    - Kingfisher
     - MBProgressHUD
     - RxAlamofire
     - RxCocoa
@@ -46,12 +47,12 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   CustomDesignableX: 68bae234d27bf594f22e09d90e67331cb4e5c56a
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
-  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
@@ -59,7 +60,8 @@ SPEC CHECKSUMS:
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
 
-PODFILE CHECKSUM: dd61015e68876128c919acc0b759c7219aaedb37
+PODFILE CHECKSUM: ffb3ea72a66c6b3e8e303db27684d07771ae6fbc
 
 COCOAPODS: 1.12.1

@@ -18,16 +18,19 @@ class CharactersVC: BaseViewController {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: CharactersTableCells.CharactersTCell.rawValue, bundle: nil), forCellReuseIdentifier: CharactersTableCells.CharactersTCell.rawValue)
-        
         bindData()
     }
     
     private func bindData(){
-        self.viewModel.chars.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: CharactersTableCells.CharactersTCell.rawValue, cellType: CharactersTCell.self)) { row, element, cell in
-                cell.configureCell(char: element)
-            }
-            .disposed(by: disposeBag)
+        
+        viewModel.chars.asObservable().bind(to: tableView.rx.items){ [weak self] (tableView, row, element) -> UITableViewCell in
+            guard let self = self else {return UITableViewCell()}
+            let indexPath = IndexPath(row: row, section: 0)
+            let cell = tableView.dequeueReusableCell(withIdentifier: CharactersTableCells.CharactersTCell.rawValue, for: indexPath) as! CharactersTCell
+            cell.configureCell(char: element)
+            return cell
+        }.disposed(by: disposeBag)
+
         
         tableView.rx
             .willDisplayCell

@@ -105,9 +105,9 @@ class CharacterDetailViewModel:BaseViewModel {
         let predicate = NSPredicate(format: "charId == \(charId)")
         fetchRequest.sortDescriptors = []
         fetchRequest.predicate = predicate
-        dependencies.managedObjectContext?.rx.entities(fetchRequest: fetchRequest).asObservable()
-            .subscribe(onNext: { [weak self] commics in
-                guard let `self` = self else {return}
+        do {
+            if let commics =  try dependencies.managedObjectContext?.fetch(fetchRequest) {
+                plog(commics.count)
                 if !commics.isEmpty {
                     var result = [CharDetailResultModel]()
                     for comic in commics {
@@ -118,8 +118,12 @@ class CharacterDetailViewModel:BaseViewModel {
                     self.setComicsValue(results: result)
                 }
                 else {
-                    self.alertDialog.onNext((NSLocalizedString("Please try again later", comment: ""), " NO INTERNET , NO COMICS CACHED "))
+                    plog(" NO INTERNET , NO CACHED ")
                 }
-            }).disposed(by: disposeBag)
+            }
+        }
+        catch let error {
+            self.alertDialog.onNext((NSLocalizedString("Please try again later", comment: ""), error.localizedDescription))
+        }
     }
 }
